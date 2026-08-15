@@ -1,0 +1,37 @@
+name: Validate
+
+# A red build means this system will not install. The checks are the server's
+# own, run from a checkout of the application beside this one.
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out this system
+        uses: actions/checkout@v4
+        with:
+          path: devils-toys-monolith
+
+      - name: Check out The Devil's Toys
+        uses: actions/checkout@v4
+        with:
+          repository: tpskowski/the-devils-toys
+          path: the-devils-toys
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci
+        working-directory: the-devils-toys
+
+      - name: The system installs
+        run: npm run systems:validate -- ../devils-toys-monolith
+        working-directory: the-devils-toys
+
+      - name: The extracted tables still match the rules text
+        run: npx tsx scripts/tables-md-to-json.ts --repo ../devils-toys-monolith --check
+        working-directory: the-devils-toys

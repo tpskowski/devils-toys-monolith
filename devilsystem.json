@@ -1,0 +1,9 @@
+{
+  "app": "devils-toys-system",
+  "formatVersion": 1,
+  "systemId": "monolith",
+  "systemName": "Monolith",
+  "licenses": [
+    "CC BY-SA 4.0"
+  ]
+}

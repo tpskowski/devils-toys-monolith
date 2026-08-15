@@ -1,0 +1,10 @@
+# The original book: redistributable text lives in rules/, but the book itself
+# is not ours to publish. Everything an author keeps for reference goes here.
+/source/
+
+# Editor and merge leftovers
+.DS_Store
+Thumbs.db
+desktop.ini
+*.orig
+*.rej

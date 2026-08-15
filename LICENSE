@@ -1,0 +1,12 @@
+Monolith: Interstellar Science-Fiction Adventure
+by Adam Hensley
+
+Licensed under the Creative Commons Attribution-ShareAlike 4.0 International.
+Full licence text: https://creativecommons.org/licenses/by-sa/4.0/
+
+The rules text in rules/, the tables in tables/, and the catalogues in
+items.json and traits.json are derived from that source and carry the same
+licence. See NOTICE.md for the attribution and the record of changes made.
+
+This repository contains no application code. The Devil's Toys itself is
+MIT-licensed and lives at https://github.com/tpskowski/the-devils-toys.

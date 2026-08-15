@@ -1,0 +1,956 @@
+{
+  "id": "monolith",
+  "name": "Monolith",
+  "shortName": "MONOLITH",
+  "glyph": "M",
+  "defaultTheme": "digital",
+  "tagline": "Freelancers at the edge of a sprawling, dangerous cosmos.",
+  "rollRulesQuery": "Tests",
+  "sourceDocuments": [
+    {
+      "id": "monolith",
+      "markdownFile": "Monolith.md",
+      "tablesFile": "monolith.json",
+      "correctionsFile": "corrections.md",
+      "license": "CC BY-SA 4.0"
+    }
+  ],
+  "contentModules": [
+    {
+      "id": "monolith/core",
+      "label": "Monolith core rules",
+      "sourceDocumentId": "monolith",
+      "rootHeadings": [
+        "MONOLITH"
+      ],
+      "classification": "player",
+      "storageNamespace": "monolith.core",
+      "provides": [
+        "monolith/core"
+      ],
+      "requires": []
+    },
+    {
+      "id": "monolith/gm",
+      "label": "Monolith GM rules",
+      "sourceDocumentId": "monolith",
+      "rootHeadings": [
+        "NPCS",
+        "SAMPLE BESTIARY",
+        "PLANETS",
+        "FACTION RULES",
+        "SAMPLE FACTIONS",
+        "TABLES & GENERATORS"
+      ],
+      "classification": "gm",
+      "storageNamespace": "monolith.gm",
+      "provides": [
+        "monolith/gm"
+      ],
+      "requires": [
+        "monolith/core"
+      ]
+    }
+  ],
+  "imports": [],
+  "partyLabel": "Company",
+  "abilities": [
+    "Strength",
+    "Dexterity",
+    "Will"
+  ],
+  "gmOnlyHeadings": [
+    "NPCS",
+    "SAMPLE BESTIARY",
+    "PLANETS",
+    "FACTION RULES",
+    "SAMPLE FACTIONS",
+    "TABLES & GENERATORS"
+  ],
+  "npcCatalog": {
+    "heading": "SAMPLE BESTIARY",
+    "entryLevel": 3,
+    "exclude": []
+  },
+  "initiative": {
+    "model": "side",
+    "sides": [
+      {
+        "id": "party",
+        "label": "PC turn"
+      },
+      {
+        "id": "enemies",
+        "label": "Enemy turn"
+      }
+    ],
+    "sideOrder": "fixed"
+  },
+  "rangedWeaponIcon": "gun",
+  "traitCatalog": {
+    "headings": [
+      "RANGED PROPERTIES",
+      "MELEE PROPERTIES",
+      "DAMAGE TYPES"
+    ]
+  },
+  "npcStatblock": {
+    "hitPointsKey": "hp",
+    "weaponRange": {
+      "melee": [
+        "\\bmelee\\b",
+        "^c-?r$",
+        "^close(?:\\s+range)?$",
+        "^touch$"
+      ],
+      "ranged": [
+        "range",
+        "\\b[smf]-r\\b",
+        "\\b(?:feet|foot|ft|metres?|meters?)\\b"
+      ]
+    },
+    "weaponKeys": [
+      "attacks",
+      "secondWeapon"
+    ],
+    "armorKey": "armor",
+    "fields": [
+      {
+        "key": "hp",
+        "label": "HP",
+        "kind": "number",
+        "inSummary": true
+      },
+      {
+        "key": "armor",
+        "label": "Armor",
+        "kind": "number",
+        "inSummary": true
+      },
+      {
+        "key": "str",
+        "label": "STR",
+        "kind": "number"
+      },
+      {
+        "key": "dex",
+        "label": "DEX",
+        "kind": "number",
+        "inSummary": true
+      },
+      {
+        "key": "wil",
+        "label": "WIL",
+        "kind": "number"
+      },
+      {
+        "key": "attacks",
+        "label": "Weapon 1",
+        "kind": "text"
+      },
+      {
+        "key": "secondWeapon",
+        "label": "Weapon 2",
+        "kind": "text"
+      }
+    ]
+  },
+  "attributeDamage": {
+    "label": "Attribute damage",
+    "note": "Damage past 0 HP takes STR by the remainder, and the target then saves against STR to avoid critical damage.",
+    "criticalDamage": {
+      "attributeId": "str",
+      "key": "criticalDamage",
+      "label": "Critical damage"
+    },
+    "attributes": [
+      {
+        "id": "str",
+        "label": "STR",
+        "currentKey": "strCurrent",
+        "maximumKey": "strMax",
+        "statblockKey": "str"
+      },
+      {
+        "id": "dex",
+        "label": "DEX",
+        "currentKey": "dexCurrent",
+        "maximumKey": "dexMax",
+        "statblockKey": "dex"
+      },
+      {
+        "id": "wil",
+        "label": "WIL",
+        "currentKey": "wilCurrent",
+        "maximumKey": "wilMax",
+        "statblockKey": "wil"
+      }
+    ]
+  },
+  "viceCatalog": {
+    "column": "Vice"
+  },
+  "tableCatalog": {
+    "label": "Monolith tables",
+    "exclude": [],
+    "tags": [
+      "scifi"
+    ]
+  },
+  "dice": {
+    "save": {
+      "sides": 20,
+      "success": "equal-or-under",
+      "automaticSuccess": 1,
+      "automaticFailure": 20,
+      "types": [
+        {
+          "id": "STR",
+          "label": "STR"
+        },
+        {
+          "id": "DEX",
+          "label": "DEX"
+        },
+        {
+          "id": "WIL",
+          "label": "WIL"
+        }
+      ],
+      "outcomes": {
+        "normal": {
+          "success": "Success",
+          "failure": "Failure"
+        },
+        "advantage": {
+          "success": "Enhanced success",
+          "failure": "Reduced failure"
+        },
+        "disadvantage": {
+          "success": "Mixed success",
+          "failure": "Disastrous failure"
+        }
+      }
+    },
+    "damage": {
+      "impairedSides": 4,
+      "enhancedSides": 12,
+      "multipleRolls": "keep-highest"
+    }
+  },
+  "characterSheet": {
+    "layout": {
+      "kind": "rails",
+      "left": [
+        "identity"
+      ],
+      "feature": [
+        "talents"
+      ],
+      "right": {
+        "sections": [
+          "vices"
+        ],
+        "lists": [
+          "equipment"
+        ]
+      }
+    },
+    "sections": [
+      {
+        "id": "identity",
+        "label": "Identity",
+        "fields": [
+          {
+            "key": "level",
+            "label": "Level",
+            "kind": "number"
+          },
+          {
+            "key": "xp",
+            "label": "XP",
+            "kind": "number"
+          },
+          {
+            "key": "corruption",
+            "label": "Corruption",
+            "kind": "number",
+            "placeholder": "1–30"
+          }
+        ]
+      },
+      {
+        "id": "core",
+        "label": "Core statistics",
+        "layout": "paired-current-max",
+        "fields": [
+          {
+            "key": "hpCurrent",
+            "label": "Hit Protection current",
+            "kind": "number"
+          },
+          {
+            "key": "hpMax",
+            "label": "Hit Protection maximum",
+            "kind": "number"
+          },
+          {
+            "key": "strCurrent",
+            "label": "Strength current",
+            "kind": "number",
+            "roll": {
+              "kind": "save",
+              "label": "STR"
+            }
+          },
+          {
+            "key": "strMax",
+            "label": "Strength maximum",
+            "kind": "number"
+          },
+          {
+            "key": "dexCurrent",
+            "label": "Dexterity current",
+            "kind": "number",
+            "roll": {
+              "kind": "save",
+              "label": "DEX"
+            }
+          },
+          {
+            "key": "dexMax",
+            "label": "Dexterity maximum",
+            "kind": "number"
+          },
+          {
+            "key": "wilCurrent",
+            "label": "Willpower current",
+            "kind": "number",
+            "roll": {
+              "kind": "save",
+              "label": "WIL"
+            }
+          },
+          {
+            "key": "wilMax",
+            "label": "Willpower maximum",
+            "kind": "number"
+          },
+          {
+            "key": "armorCurrent",
+            "label": "Armor current",
+            "kind": "number"
+          },
+          {
+            "key": "armorMax",
+            "label": "Armor maximum",
+            "kind": "number"
+          }
+        ]
+      },
+      {
+        "id": "state",
+        "label": "State",
+        "fields": [
+          {
+            "key": "criticalDamage",
+            "label": "Critical damage",
+            "kind": "checkbox"
+          }
+        ]
+      },
+      {
+        "id": "talents",
+        "label": "Talents",
+        "fields": [
+          {
+            "key": "abilities",
+            "label": "Talents",
+            "kind": "entries"
+          }
+        ]
+      },
+      {
+        "id": "vices",
+        "label": "Vices",
+        "fields": [
+          {
+            "key": "vices",
+            "label": "Vices",
+            "kind": "vices"
+          }
+        ]
+      }
+    ],
+    "lists": [
+      {
+        "key": "equipment",
+        "label": "Equipment slots",
+        "slots": [
+          "Body 1",
+          "Body 2",
+          "Body 3",
+          "Body 4",
+          "Backpack 1",
+          "Backpack 2",
+          "Backpack 3",
+          "Backpack 4",
+          "Backpack 5",
+          "Backpack 6"
+        ],
+        "groupStarts": [
+          4
+        ],
+        "itemHeadings": [
+          "ARMORY",
+          "EQUIPMENT"
+        ],
+        "skipCategories": [
+          "LAND VEHICLES (DAILY RENTING PRICE IS 1/1OTH COST)",
+          "FOOD, DRINKS, & SERVICES",
+          "SPECIALISTS (COST IS DAILY)"
+        ],
+        "weaponCategories": [
+          "STANDARD WEAPONS",
+          "HIGH ENERGY WEAPONS",
+          "SMART WEAPONS",
+          "EXPLOSIVES"
+        ],
+        "weaponRange": {
+          "melee": [
+            "\\bmelee\\b",
+            "^c-?r$",
+            "^close(?:\\s+range)?$",
+            "^touch$"
+          ],
+          "ranged": [
+            "range",
+            "\\b[smf]-r\\b",
+            "\\b(?:feet|foot|ft|metres?|meters?)\\b"
+          ]
+        }
+      },
+      {
+        "key": "augmentations",
+        "label": "Augmentation slots",
+        "slots": [
+          "Cerebral",
+          "Eyes",
+          "Lower Face",
+          "Skin",
+          "Left Arm",
+          "Right Arm",
+          "Left Leg",
+          "Right Leg",
+          "Internal 1",
+          "Internal 2",
+          "Torso 1",
+          "Torso 2"
+        ],
+        "slotTypes": [
+          "neural",
+          "eyes",
+          "lower-face",
+          "skin",
+          "arm",
+          "arm",
+          "leg",
+          "leg",
+          "internal",
+          "internal",
+          "torso",
+          "torso"
+        ],
+        "editInDialog": true,
+        "itemHeadings": [
+          "AUGMENTATIONS"
+        ],
+        "weaponRange": {
+          "melee": [
+            "\\bmelee\\b",
+            "^c-?r$",
+            "^close(?:\\s+range)?$",
+            "^touch$"
+          ],
+          "ranged": [
+            "range",
+            "\\b[smf]-r\\b",
+            "\\b(?:feet|foot|ft|metres?|meters?)\\b"
+          ]
+        }
+      }
+    ]
+  },
+  "groupPage": {
+    "sections": [],
+    "obligations": {
+      "label": "Group Obligations",
+      "singularLabel": "Obligation",
+      "emptyHint": "No obligations recorded.",
+      "rulesQuery": "Group Debt"
+    },
+    "hirelings": {
+      "label": "Freelancers",
+      "singularLabel": "Freelancer",
+      "rulesQuery": "Freelancers & Mercs",
+      "creationHint": "Roll 3D6 for each ability, 1D6 HP, add a standard D6 weapon, then use the Finishing Touches tables.",
+      "creationRoll": {
+        "abilities": [
+          {
+            "currentKey": "strCurrent",
+            "maximumKey": "strMax",
+            "dice": "3d6"
+          },
+          {
+            "currentKey": "dexCurrent",
+            "maximumKey": "dexMax",
+            "dice": "3d6"
+          },
+          {
+            "currentKey": "wilCurrent",
+            "maximumKey": "wilMax",
+            "dice": "3d6"
+          }
+        ],
+        "hitProtection": {
+          "currentKey": "hpCurrent",
+          "maximumKey": "hpMax",
+          "dice": "1d6"
+        },
+        "weapon": "Standard weapon (D6)",
+        "finishingTouches": {
+          "section": "FINISHING TOUCHES",
+          "details": [
+            "Physique",
+            "Hair",
+            "Face",
+            "Mannerisms",
+            "Clothing Style"
+          ],
+          "firstNames": [
+            "Male Names",
+            "Female Names",
+            "Ambiguous Names"
+          ],
+          "lastName": "Last Names"
+        }
+      },
+      "levelUpHint": "Level-up automation for crew members is coming in a future update.",
+      "sheet": {
+        "sections": [
+          {
+            "id": "identity",
+            "label": "Identity",
+            "fields": [
+              {
+                "key": "name",
+                "label": "Name",
+                "kind": "text"
+              },
+              {
+                "key": "details",
+                "label": "Finishing touches",
+                "kind": "textarea"
+              }
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Core statistics",
+            "layout": "paired-current-max",
+            "fields": [
+              {
+                "key": "hpCurrent",
+                "label": "Hit Protection current",
+                "kind": "number"
+              },
+              {
+                "key": "hpMax",
+                "label": "Hit Protection maximum",
+                "kind": "number"
+              },
+              {
+                "key": "strCurrent",
+                "label": "Strength current",
+                "kind": "number",
+                "roll": {
+                  "kind": "save",
+                  "label": "STR"
+                }
+              },
+              {
+                "key": "strMax",
+                "label": "Strength maximum",
+                "kind": "number"
+              },
+              {
+                "key": "dexCurrent",
+                "label": "Dexterity current",
+                "kind": "number",
+                "roll": {
+                  "kind": "save",
+                  "label": "DEX"
+                }
+              },
+              {
+                "key": "dexMax",
+                "label": "Dexterity maximum",
+                "kind": "number"
+              },
+              {
+                "key": "wilCurrent",
+                "label": "Willpower current",
+                "kind": "number",
+                "roll": {
+                  "kind": "save",
+                  "label": "WIL"
+                }
+              },
+              {
+                "key": "wilMax",
+                "label": "Willpower maximum",
+                "kind": "number"
+              }
+            ]
+          },
+          {
+            "id": "state",
+            "label": "State",
+            "fields": [
+              {
+                "key": "criticalDamage",
+                "label": "Critical damage",
+                "kind": "checkbox"
+              }
+            ]
+          },
+          {
+            "id": "gear",
+            "label": "Gear",
+            "fields": [
+              {
+                "key": "notes",
+                "label": "Notes",
+                "kind": "textarea"
+              }
+            ]
+          }
+        ],
+        "lists": [
+          {
+            "key": "equipment",
+            "label": "Equipment slots",
+            "slots": [
+              "Slot 1",
+              "Slot 2",
+              "Slot 3",
+              "Slot 4",
+              "Slot 5",
+              "Slot 6",
+              "Slot 7",
+              "Slot 8",
+              "Slot 9",
+              "Slot 10"
+            ],
+            "weaponRange": {
+              "melee": [
+                "\\bmelee\\b",
+                "^c-?r$",
+                "^close(?:\\s+range)?$",
+                "^touch$"
+              ],
+              "ranged": [
+                "range",
+                "\\b[smf]-r\\b",
+                "\\b(?:feet|foot|ft|metres?|meters?)\\b"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "starshipSheet": {
+      "sections": [
+        {
+          "id": "identity",
+          "label": "Vessel",
+          "fields": [
+            {
+              "key": "name",
+              "label": "Starship name",
+              "kind": "text"
+            },
+            {
+              "key": "size",
+              "label": "Size",
+              "kind": "text"
+            },
+            {
+              "key": "crew",
+              "label": "Crew",
+              "kind": "text",
+              "placeholder": "Minimum–maximum"
+            }
+          ]
+        },
+        {
+          "id": "scores",
+          "label": "Starship scores",
+          "layout": "paired-current-max",
+          "fields": [
+            {
+              "key": "shieldsCurrent",
+              "label": "Shields current",
+              "kind": "number"
+            },
+            {
+              "key": "shieldsMax",
+              "label": "Shields maximum",
+              "kind": "number"
+            },
+            {
+              "key": "hullCurrent",
+              "label": "Hull current",
+              "kind": "number"
+            },
+            {
+              "key": "hullMax",
+              "label": "Hull maximum",
+              "kind": "number"
+            },
+            {
+              "key": "enginesCurrent",
+              "label": "Engines current",
+              "kind": "number"
+            },
+            {
+              "key": "enginesMax",
+              "label": "Engines maximum",
+              "kind": "number"
+            },
+            {
+              "key": "systemsCurrent",
+              "label": "Systems current",
+              "kind": "number"
+            },
+            {
+              "key": "systemsMax",
+              "label": "Systems maximum",
+              "kind": "number"
+            }
+          ]
+        },
+        {
+          "id": "handling",
+          "label": "Handling",
+          "fields": [
+            {
+              "key": "armoring",
+              "label": "Armoring",
+              "kind": "number"
+            },
+            {
+              "key": "movement",
+              "label": "Movement",
+              "kind": "number"
+            },
+            {
+              "key": "mobility",
+              "label": "Mobility",
+              "kind": "number"
+            }
+          ]
+        },
+        {
+          "id": "notes",
+          "label": "Status & notes",
+          "fields": [
+            {
+              "key": "notes",
+              "label": "Notes",
+              "kind": "textarea"
+            }
+          ]
+        }
+      ],
+      "lists": [
+        {
+          "key": "holds",
+          "label": "Holds",
+          "slots": [
+            "Hold 1",
+            "Hold 2",
+            "Hold 3",
+            "Hold 4",
+            "Hold 5",
+            "Hold 6",
+            "Hold 7",
+            "Hold 8",
+            "Hold 9",
+            "Hold 10",
+            "Hold 11",
+            "Hold 12",
+            "Hold 13",
+            "Hold 14",
+            "Hold 15",
+            "Hold 16",
+            "Hold 17",
+            "Hold 18",
+            "Hold 19",
+            "Hold 20"
+          ],
+          "groupStarts": [
+            4,
+            8,
+            12,
+            16
+          ]
+        }
+      ],
+      "sizes": [
+        {
+          "id": "fighter",
+          "label": "Fighter",
+          "holds": 4,
+          "fixed": {
+            "crew": "1-2",
+            "movement": 5,
+            "mobility": 3
+          },
+          "note": "Crew 1-2 · 4 holds · movement 5, mobility 3 · base cost 2,000C · cockpit"
+        },
+        {
+          "id": "small",
+          "label": "Small",
+          "holds": 8,
+          "fixed": {
+            "crew": "2-6",
+            "movement": 5,
+            "mobility": 2
+          },
+          "note": "Crew 2-6 · 8 holds · movement 5, mobility 2 · base cost 4,000C · cockpit"
+        },
+        {
+          "id": "medium",
+          "label": "Medium",
+          "holds": 12,
+          "fixed": {
+            "crew": "6-10",
+            "movement": 4,
+            "mobility": 2
+          },
+          "note": "Crew 6-10 · 12 holds · movement 4, mobility 2 · base cost 6,000C · cockpit"
+        },
+        {
+          "id": "large",
+          "label": "Large",
+          "holds": 16,
+          "fixed": {
+            "crew": "10-20",
+            "movement": 3,
+            "mobility": 1
+          },
+          "note": "Crew 10-20 · 16 holds · movement 3, mobility 1 · base cost 8,000C · bridge"
+        },
+        {
+          "id": "giant",
+          "label": "Giant",
+          "holds": 20,
+          "fixed": {
+            "crew": "20-50",
+            "movement": 2,
+            "mobility": 1
+          },
+          "note": "Crew 20-50 · 20 holds · movement 2, mobility 1 · base cost 10,000C · bridge"
+        }
+      ],
+      "baseValues": {
+        "shieldsCurrent": 10,
+        "shieldsMax": 10,
+        "hullCurrent": 10,
+        "hullMax": 10,
+        "enginesCurrent": 10,
+        "enginesMax": 10,
+        "systemsCurrent": 10,
+        "systemsMax": 10,
+        "armoring": 0
+      },
+      "partsList": "holds"
+    }
+  },
+  "warningRules": [
+    {
+      "kind": "range",
+      "key": "hpMax",
+      "max": 18,
+      "message": "HP maximum cannot normally exceed 18."
+    },
+    {
+      "kind": "compare",
+      "key": "hpCurrent",
+      "against": "hpMax",
+      "operator": ">",
+      "message": "HP current value is above its recorded maximum."
+    },
+    {
+      "kind": "range",
+      "key": "strMax",
+      "max": 18,
+      "message": "STR maximum cannot normally exceed 18."
+    },
+    {
+      "kind": "compare",
+      "key": "strCurrent",
+      "against": "strMax",
+      "operator": ">",
+      "message": "STR current value is above its recorded maximum."
+    },
+    {
+      "kind": "range",
+      "key": "dexMax",
+      "max": 18,
+      "message": "DEX maximum cannot normally exceed 18."
+    },
+    {
+      "kind": "compare",
+      "key": "dexCurrent",
+      "against": "dexMax",
+      "operator": ">",
+      "message": "DEX current value is above its recorded maximum."
+    },
+    {
+      "kind": "range",
+      "key": "wilMax",
+      "max": 18,
+      "message": "WIL maximum cannot normally exceed 18."
+    },
+    {
+      "kind": "compare",
+      "key": "wilCurrent",
+      "against": "wilMax",
+      "operator": ">",
+      "message": "WIL current value is above its recorded maximum."
+    },
+    {
+      "kind": "range",
+      "key": "corruption",
+      "min": 1,
+      "max": 30,
+      "message": "Corruption is normally recorded from 1 to 30."
+    },
+    {
+      "kind": "list-occupancy",
+      "listKey": "augmentations",
+      "tiers": [
+        {
+          "atLeast": 12,
+          "message": "All 12 augmentation sockets are occupied; reduce WIL by another 1d6."
+        },
+        {
+          "atLeast": 6,
+          "message": "Six or more augmentation sockets are occupied; reduce WIL by 1d6."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+# Store text with LF so checkouts match across Windows, macOS, Linux, and CI.
+# The extracted tables are compared byte-for-byte in CI, so this is load-bearing.
+* text=auto eol=lf
