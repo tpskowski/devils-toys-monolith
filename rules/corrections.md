@@ -76,3 +76,23 @@ No table gained, lost, or altered a row.
 **Correction:** the rules and table now call for `D30`, and the example reaches result 9 directly.
 
 **Reason:** The Devil's Tables rolls the die named by a table. Treating Hollowing as a d30 makes all thirty authored outcomes reachable and gives the roller one complete die expression instead of silently leaving rows 21–30 unavailable.
+
+## Monolith — land-vehicle rental fraction
+
+**Source:** `raw/Monolith.md`, the LAND VEHICLES table heading in EQUIPMENT.
+
+**Original:** `DAILY RENTING PRICE IS 1/1OTH COST`.
+
+**Correction:** `DAILY RENTING PRICE IS 1/10TH COST`.
+
+**Reason:** `1/1OTH` is an obvious transcription typo for one tenth and obscures the intended rental price.
+
+## Monolith — bonus-damage spelling
+
+**Source:** `raw/Monolith.md`, the BONUS DAMAGE paragraph.
+
+**Original:** `an attack may recieve a bonus`.
+
+**Correction:** `an attack may receive a bonus`.
+
+**Reason:** Corrects an obvious spelling error without changing the rule.

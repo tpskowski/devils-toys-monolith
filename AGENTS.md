@@ -6,7 +6,7 @@ belongs in the core repository instead.
 
 ## The shape of it
 
-    devilsystem.json      the marker: app, formatVersion, systemId, systemName, licenses
+    devilsystem.json      the marker: app, formatVersion, systemId, systemName, licenses, version
     system.json           the GameSystem, as data
     items.json            the gear catalogue
     traits.json           what the book's weapon words mean
@@ -19,6 +19,20 @@ field is data the application reads, and there is no hook, callback, or
 expression anywhere in it. A player warning is a `warningRules` entry, not a
 function. That is what makes a system installable at all, and it is not
 negotiable — the installer will not run code and there is nowhere to put it.
+
+`version` is this repository's own release, and it is written by hand: nothing
+derives it from a tag, a commit, or the version of the book. Keep it dotted
+numbers — `MAJOR.MINOR.PATCH` — because two versions that both read as numbers
+are compared as numbers, and anything else can only be reported as *different*,
+never as *newer*.
+
+Bumping it is what makes an update visible. A server with Monolith installed
+reads this one file from the repository, sees a later version than the one it
+holds, and offers its admin the update; never bumping it means never offering
+one, however much has changed underneath. So bump it in the commit that carries
+the change worth pulling — a rules repair, a new sheet field, a rebuilt
+`tables/` file — and leave it alone for anything a server has no reason to
+fetch.
 
 ## Before you push
 

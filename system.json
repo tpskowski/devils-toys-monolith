@@ -20,14 +20,10 @@
       "id": "monolith/core",
       "label": "Monolith core rules",
       "sourceDocumentId": "monolith",
-      "rootHeadings": [
-        "MONOLITH"
-      ],
+      "rootHeadings": ["MONOLITH"],
       "classification": "player",
       "storageNamespace": "monolith.core",
-      "provides": [
-        "monolith/core"
-      ],
+      "provides": ["monolith/core"],
       "requires": []
     },
     {
@@ -44,21 +40,13 @@
       ],
       "classification": "gm",
       "storageNamespace": "monolith.gm",
-      "provides": [
-        "monolith/gm"
-      ],
-      "requires": [
-        "monolith/core"
-      ]
+      "provides": ["monolith/gm"],
+      "requires": ["monolith/core"]
     }
   ],
   "imports": [],
   "partyLabel": "Company",
-  "abilities": [
-    "Strength",
-    "Dexterity",
-    "Will"
-  ],
+  "abilities": ["Strength", "Dexterity", "Will"],
   "gmOnlyHeadings": [
     "NPCS",
     "SAMPLE BESTIARY",
@@ -88,31 +76,19 @@
   },
   "rangedWeaponIcon": "gun",
   "traitCatalog": {
-    "headings": [
-      "RANGED PROPERTIES",
-      "MELEE PROPERTIES",
-      "DAMAGE TYPES"
-    ]
+    "headings": ["RANGED PROPERTIES", "MELEE PROPERTIES", "DAMAGE TYPES"]
   },
   "npcStatblock": {
     "hitPointsKey": "hp",
     "weaponRange": {
-      "melee": [
-        "\\bmelee\\b",
-        "^c-?r$",
-        "^close(?:\\s+range)?$",
-        "^touch$"
-      ],
+      "melee": ["\\bmelee\\b", "^c-?r$", "^close(?:\\s+range)?$", "^touch$"],
       "ranged": [
         "range",
         "\\b[smf]-r\\b",
         "\\b(?:feet|foot|ft|metres?|meters?)\\b"
       ]
     },
-    "weaponKeys": [
-      "attacks",
-      "secondWeapon"
-    ],
+    "weaponKeys": ["attacks", "secondWeapon"],
     "armorKey": "armor",
     "fields": [
       {
@@ -193,9 +169,7 @@
   "tableCatalog": {
     "label": "Monolith tables",
     "exclude": [],
-    "tags": [
-      "scifi"
-    ]
+    "tags": ["scifi"]
   },
   "optionalRules": [
     {
@@ -238,7 +212,7 @@
         ],
         "rearrange": {
           "kind": "swap",
-          "count": 2
+          "count": 1
         }
       },
       {
@@ -261,25 +235,76 @@
         "kind": "packet",
         "label": "Background",
         "rulesQuery": "BACKGROUNDS",
-        "hint": "Roll 1D12, or pick. Its first table is read at your HP; the other two are rolled.",
+        "hint": "Roll 1D12, or pick. You will go through its three dossier tables one at a time next.",
         "under": "BACKGROUNDS",
         "dice": "d12",
         "prose": "PROFILE",
         "grantFrom": "STARTING GEAR",
-        "reuse": [
-          {
-            "position": 1,
-            "fromStep": "hit-protection"
-          }
-        ],
+        "rollTablesUnder": false,
         "listKey": "equipment",
         "into": {
-          "field": "background",
-          "joinInto": {
-            "field": "details",
-            "separator": "\n",
-            "prefixWith": "table"
+          "field": "background"
+        }
+      },
+      {
+        "id": "background-table-one",
+        "kind": "roll-table",
+        "label": "Background dossier 1 of 3",
+        "rulesQuery": "BACKGROUNDS",
+        "hint": "Read your background's first table at the Hit Protection you already rolled.",
+        "section": "BACKGROUNDS",
+        "tables": [
+          {
+            "fromPacket": "background",
+            "position": 1,
+            "fromStep": "hit-protection",
+            "stowInto": "equipment"
           }
+        ],
+        "joinInto": {
+          "field": "details",
+          "separator": "\n",
+          "prefixWith": "table"
+        }
+      },
+      {
+        "id": "background-table-two",
+        "kind": "roll-table",
+        "label": "Background dossier 2 of 3",
+        "rulesQuery": "BACKGROUNDS",
+        "hint": "Roll the second table under your chosen background.",
+        "section": "BACKGROUNDS",
+        "tables": [
+          {
+            "fromPacket": "background",
+            "position": 2,
+            "stowInto": "equipment"
+          }
+        ],
+        "joinInto": {
+          "field": "details",
+          "separator": "\n",
+          "prefixWith": "table"
+        }
+      },
+      {
+        "id": "background-table-three",
+        "kind": "roll-table",
+        "label": "Background dossier 3 of 3",
+        "rulesQuery": "BACKGROUNDS",
+        "hint": "Roll the third table under your chosen background.",
+        "section": "BACKGROUNDS",
+        "tables": [
+          {
+            "fromPacket": "background",
+            "position": 3,
+            "stowInto": "equipment"
+          }
+        ],
+        "joinInto": {
+          "field": "details",
+          "separator": "\n",
+          "prefixWith": "table"
         }
       },
       {
@@ -315,6 +340,10 @@
           "field": "details",
           "separator": "\n",
           "prefixWith": "table"
+        },
+        "editable": {
+          "multiline": true,
+          "placeholder": "Describe your own finishing touches"
         }
       },
       {
@@ -326,11 +355,7 @@
         "hint": "Roll one, or write your own.",
         "tables": [
           {
-            "firstOf": [
-              "Male Names",
-              "Female Names",
-              "Ambiguous Names"
-            ],
+            "firstOf": ["Male Names", "Female Names", "Ambiguous Names"],
             "column": "Result"
           },
           {
@@ -341,6 +366,9 @@
         "joinInto": {
           "field": "$name",
           "separator": " "
+        },
+        "editable": {
+          "placeholder": "Enter a custom name"
         }
       },
       {
@@ -380,6 +408,11 @@
           "monolith/data-comm",
           "monolith/glo-torch"
         ],
+        "reviewFrom": ["background"],
+        "describeInto": {
+          "field": "details",
+          "separator": "\n"
+        },
         "roll": [
           {
             "dice": "3d6",
@@ -391,33 +424,31 @@
       {
         "id": "level",
         "kind": "set",
-        "label": "Where you start",
+        "label": "Starting defaults",
+        "automatic": true,
+        "defaults": true,
         "values": {
           "level": 1,
-          "xp": 0,
-          "armorMax": 0
+          "xp": 0
         }
       },
       {
         "id": "currents",
         "kind": "derive",
-        "label": "Fill in your current scores",
+        "label": "Armor from equipment",
+        "automatic": true,
         "derive": [
           {
             "key": "armorCurrent",
-            "op": "copy",
-            "from": [
-              "armorMax"
-            ]
+            "op": "equipment-armor",
+            "from": ["equipment"]
+          },
+          {
+            "key": "armorMax",
+            "op": "equipment-armor",
+            "from": ["equipment"]
           }
         ]
-      },
-      {
-        "id": "debt",
-        "kind": "rules",
-        "label": "Shared debt",
-        "rulesQuery": "GROUP DEBT",
-        "hint": "One D12 for the whole company, rolled once. Your GM rolls it on the group page."
       }
     ]
   },
@@ -465,19 +496,11 @@
   "characterSheet": {
     "layout": {
       "kind": "rails",
-      "left": [
-        "identity"
-      ],
-      "feature": [
-        "talents"
-      ],
+      "left": ["identity"],
+      "feature": ["talents"],
       "right": {
-        "sections": [
-          "vices"
-        ],
-        "lists": [
-          "equipment"
-        ]
+        "sections": ["vices"],
+        "lists": ["equipment"]
       }
     },
     "sections": [
@@ -638,15 +661,10 @@
           "Backpack 5",
           "Backpack 6"
         ],
-        "groupStarts": [
-          4
-        ],
-        "itemHeadings": [
-          "ARMORY",
-          "EQUIPMENT"
-        ],
+        "groupStarts": [4],
+        "itemHeadings": ["ARMORY", "EQUIPMENT"],
         "skipCategories": [
-          "LAND VEHICLES (DAILY RENTING PRICE IS 1/1OTH COST)",
+          "LAND VEHICLES (DAILY RENTING PRICE IS 1/10TH COST)",
           "FOOD, DRINKS, & SERVICES",
           "SPECIALISTS (COST IS DAILY)"
         ],
@@ -702,9 +720,7 @@
           "torso"
         ],
         "editInDialog": true,
-        "itemHeadings": [
-          "AUGMENTATIONS"
-        ],
+        "itemHeadings": ["AUGMENTATIONS"],
         "weaponRange": {
           "melee": [
             "\\bmelee\\b",
@@ -767,11 +783,7 @@
             "Mannerisms",
             "Clothing Style"
           ],
-          "firstNames": [
-            "Male Names",
-            "Female Names",
-            "Ambiguous Names"
-          ],
+          "firstNames": ["Male Names", "Female Names", "Ambiguous Names"],
           "lastName": "Last Names"
         }
       },
@@ -1039,12 +1051,7 @@
             "Hold 19",
             "Hold 20"
           ],
-          "groupStarts": [
-            4,
-            8,
-            12,
-            16
-          ]
+          "groupStarts": [4, 8, 12, 16]
         }
       ],
       "sizes": [
@@ -1170,6 +1177,19 @@
       "against": "wilMax",
       "operator": ">",
       "message": "WIL current value is above its recorded maximum."
+    },
+    {
+      "kind": "range",
+      "key": "armorMax",
+      "max": 3,
+      "message": "Armor maximum cannot normally exceed 3."
+    },
+    {
+      "kind": "compare",
+      "key": "armorCurrent",
+      "against": "armorMax",
+      "operator": ">",
+      "message": "Armor current value is above its recorded maximum."
     },
     {
       "kind": "range",
