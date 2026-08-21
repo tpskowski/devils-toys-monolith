@@ -212,7 +212,7 @@
         ],
         "rearrange": {
           "kind": "swap",
-          "count": 2
+          "count": 1
         }
       },
       {
@@ -664,7 +664,7 @@
         "groupStarts": [4],
         "itemHeadings": ["ARMORY", "EQUIPMENT"],
         "skipCategories": [
-          "LAND VEHICLES (DAILY RENTING PRICE IS 1/1OTH COST)",
+          "LAND VEHICLES (DAILY RENTING PRICE IS 1/10TH COST)",
           "FOOD, DRINKS, & SERVICES",
           "SPECIALISTS (COST IS DAILY)"
         ],
@@ -1177,6 +1177,19 @@
       "against": "wilMax",
       "operator": ">",
       "message": "WIL current value is above its recorded maximum."
+    },
+    {
+      "kind": "range",
+      "key": "armorMax",
+      "max": 3,
+      "message": "Armor maximum cannot normally exceed 3."
+    },
+    {
+      "kind": "compare",
+      "key": "armorCurrent",
+      "against": "armorMax",
+      "operator": ">",
+      "message": "Armor current value is above its recorded maximum."
     },
     {
       "kind": "range",

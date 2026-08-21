@@ -33,7 +33,7 @@ it into the running instance. No restart, and no rebuild of the application.
 | `rules/corrections.md` | Every repair made to the source, and why |
 | `tables/monolith.json` | The tables extracted from the rules, ready to roll on |
 | `notes.md` | Working notes on how this system was fitted to the application |
-| `character-creation-plan.md` | The draft declaration for the guided character builder, and the repository work it needs first |
+| `character-creation-plan.md` | The declaration and design notes for the guided character builder |
 
 `source/` holds the original book and is not published here — see
 [NOTICE.md](NOTICE.md).

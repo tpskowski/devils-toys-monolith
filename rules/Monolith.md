@@ -1154,7 +1154,7 @@ As an alternative to rolling a background, players may choose to start with a st
 | Sledgehammer (D8, bulky) | 50 | Shovel | 20 |
 | Infrared Visor | 50 | Starship Fuel (1 tank) | 200 |
 
-| LAND VEHICLES (DAILY RENTING PRICE IS 1/1OTH COST) | COST |
+| LAND VEHICLES (DAILY RENTING PRICE IS 1/10TH COST) | COST |
 | --- | ---: |
 | **Droid Cart:** 4 Slots, automatically piloted. | 300 |
 | **Hover-Truck:** 6 slots, requires driver. | 1,000 |
@@ -1383,7 +1383,7 @@ The attacker rolls their weapon’s damage dice and subtracts the target’s arm
 
 ## BONUS DAMAGE
 
-Under certain circumstances, an attack may recieve a bonus, noted as +D6, +D8 etc. This is rolled as an extra attack against the same target, following the same rules as dual weapons. Remember that only the highest single die result causes damage. Attacks against a completely helpless target always receive +d12.
+Under certain circumstances, an attack may receive a bonus, noted as +D6, +D8 etc. This is rolled as an extra attack against the same target, following the same rules as dual weapons. Remember that only the highest single die result causes damage. Attacks against a completely helpless target always receive +d12.
 
 ## MULTIPLE ATTACKERS
 

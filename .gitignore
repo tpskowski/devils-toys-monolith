@@ -4,6 +4,7 @@
 
 # Locally built installer files.
 /dist/
+/*.devilsystem.zip
 
 # Editor and merge leftovers
 .DS_Store

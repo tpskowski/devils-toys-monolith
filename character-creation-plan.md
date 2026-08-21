@@ -1,6 +1,6 @@
 # Character creation, declared
 
-Working notes and a draft declaration for the guided character builder. The
+Working notes and the declaration for the guided character builder. The
 application-side design is
 [`docs/character-builder-plan.md`](https://github.com/tpskowski/the-devils-toys/blob/main/docs/character-builder-plan.md)
 in the core repository; this file is what Monolith has to say and do to use it.
@@ -87,7 +87,7 @@ numbers" repair, whose own _Worth knowing_ paragraph names exactly this
 consequence: the cross-reference now lives only in the surrounding prose. There
 is nothing further to record and nothing in `rules/Monolith.md` to change.
 
-Two things follow for the declaration, and both are in the draft below:
+Two things follow for the declaration, and both are in the declaration below:
 
 - The **Hit Protection step comes before the background step**, not in the book's printed order. The background cannot be read until the d6 is on the table.
 - The background's first table takes its total from that step — `fromStep` — rather than rolling a d6 of its own. Its other two tables roll normally.
@@ -95,11 +95,9 @@ Two things follow for the declaration, and both are in the draft below:
 Restoring the `1 HP` annotation is the alternative, and it is worse: the die
 column would parse as text and the table would stop being rollable at all.
 
-## The draft declaration
+## Declaration
 
-Thirteen steps. Written against the application vocabulary as planned; field names
-here move if that plan's do, which is why nothing should be committed to
-`system.json` before the schema is published.
+Thirteen steps, expressed with the application's current vocabulary.
 
 ```jsonc
 {
@@ -118,7 +116,7 @@ here move if that plan's do, which is why nothing should be committed to
           { "label": "DEX", "dice": "3d6", "currentKey": "dexCurrent", "maximumKey": "dexMax" },
           { "label": "WIL", "dice": "3d6", "currentKey": "wilCurrent", "maximumKey": "wilMax" }
         ],
-        "rearrange": { "kind": "swap", "count": 2 }
+        "rearrange": { "kind": "swap", "count": 1 }
       },
       {
         "id": "hit-protection",
@@ -223,7 +221,8 @@ here move if that plan's do, which is why nothing should be committed to
         "rulesQuery": "STARTING GEAR",
         "listKey": "equipment",
         "items": ["monolith/rations", "monolith/data-comm", "monolith/glo-torch"],
-        "reviewFrom": ["background", "background-table-one", "background-table-two", "background-table-three"],
+        "reviewFrom": ["background"],
+        "describeInto": { "field": "details", "separator": "\n" },
         "roll": [{ "dice": "3d6", "field": "credits", "label": "Credits" }]
       },
       { "id": "level", "kind": "set", "label": "Starting defaults", "automatic": true, "defaults": true, "values": { "level": 1, "xp": 0 } },
@@ -242,7 +241,7 @@ here move if that plan's do, which is why nothing should be committed to
 }
 ```
 
-### Notes on the draft
+### Notes on the declaration
 
 - **`$name` is the character's name column**, not a sheet field. The application declares it as `CREATION_NAME_KEY` and permits it as a write target nowhere else; a sheet that declared a field of that name would be refused at install.
 - **`type` is `WIL`, not `wil`.** A save step names one of the system's own `dice.save.types` ids, and Monolith writes its three in capitals.
@@ -251,27 +250,17 @@ here move if that plan's do, which is why nothing should be committed to
 - **`hp`, `str`, `dex`, and `wil` currents are set by their own `roll-scores` step**, which writes both keys of a pair. Armor is derived automatically at Finish from the equipment the player actually stowed: the best base armor plus explicit `+1 Armor` sources, capped at 3.
 - **`listKey` is not optional here in practice.** This sheet has two lists, `equipment` and `augmentations`, so an unmatched gear line has no obvious home. Naming `equipment` is what the book means — a background's bullets are things you carry, and nothing in BACKGROUNDS grants an augmentation.
 - **The background's gear is reviewed at Starting Gear, not applied on the Background screen.** The bullets under a background's `#### STARTING GEAR` are prose — "Combat Knife (D6) or 2 Flash Grenades" is a choice, and "Cigar" is not in the catalogue at all. The application matches what it can against `items.json` and offers the rest as the text a slot holds anyway. Nothing here should try to make those bullets machine-readable; that would be restating the book in `system.json`, which is the thing the whole repository is arranged to avoid.
-- **The Mercenary's Old Crew Specialty rows grant gear too** — "Take holo-binocs and a claymore" — and so do half the background tables in the book. Each dossier screen uses `stowInto: "equipment"`, so its result joins the same later Starting Gear review. A player stows what they want.
-- **Gear packs are not in the draft.** The variant needs a two-axis lookup — highest ability score against HP, split across two tables because it did not fit the page — and the roller has no notion of such a table. It stays a `rules` step pointing at GEAR PACKS until that exists, if it ever does. Note that its HP axis is the same 1d6 the background's first table reads, so a step that can reuse a roll is half of what it would need.
+- **The Mercenary's Old Crew Specialty rows grant gear too** — "Take holo-binocs and a claymore" — and so do half the background tables in the book. Each dossier screen uses `stowInto: "equipment"`, so the player files that result as equipment or description on the dossier screen itself. The later Starting Gear review is for the background's printed gear bullets.
+- **Gear packs are not in the declaration.** The variant needs a two-axis lookup — highest ability score against HP, split across two tables because it did not fit the page — and the roller has no notion of such a table. It stays a `rules` step pointing at GEAR PACKS until that exists, if it ever does. Note that its HP axis is the same 1d6 the background's first table reads, so a step that can reuse a roll is half of what it would need.
 - **Talents, psionics, astromancy, artifacts, and ex-tech** are referenced by background results by number ("Psionic #22", "Talent #18") and each has a table of its own. Rolling them from a background result is a link between tables, which the roller already has — worth trying once the builder works, and out of the first pass.
 
-## Before this is committed
+## Validation
 
-`characterCreation` is not in the published schema yet. Until it is, adding this
-block to `system.json` makes the system uninstallable — the schema is `.strict()`
-and an unknown top-level key is refused, which is the behaviour we want.
-
-Order of work in this repository:
-
-1. Add `background`, `credits`, and `details` to `characterSheet.sections`. Independent of the builder, useful on its own, and safe.
-2. Give the vices table its own heading, record it in `rules/corrections.md`, rebuild `tables/monolith.json` with `--repo`.
-3. Record the HP-sentence correction.
-4. Wait for `characterCreation` in the published schema, then add the block and validate:
+Validate the declaration from a core checkout beside this repository:
 
 ```sh
 npm run systems:validate -- ../devils-toys-monolith
 ```
 
-Run from a core checkout beside this one. It runs exactly what an install runs,
-which will by then include the creation cross-references: every field a step
-writes, every table it names, every heading it enumerates.
+It runs exactly what an install runs, including the creation cross-references:
+every field a step writes, every table it names, and every heading it enumerates.
