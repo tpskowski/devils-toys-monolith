@@ -265,6 +265,9 @@
           "field": "details",
           "separator": "\n",
           "prefixWith": "table"
+        },
+        "entryInto": {
+          "field": "abilities"
         }
       },
       {
@@ -285,6 +288,9 @@
           "field": "details",
           "separator": "\n",
           "prefixWith": "table"
+        },
+        "entryInto": {
+          "field": "abilities"
         }
       },
       {
@@ -305,6 +311,9 @@
           "field": "details",
           "separator": "\n",
           "prefixWith": "table"
+        },
+        "entryInto": {
+          "field": "abilities"
         }
       },
       {
@@ -352,10 +361,11 @@
         "label": "Name",
         "section": "FINISHING TOUCHES",
         "optional": true,
-        "hint": "Roll one, or write your own.",
+        "hint": "Pick which list your given name comes off, roll it, or write your own.",
         "tables": [
           {
             "firstOf": ["Male Names", "Female Names", "Ambiguous Names"],
+            "choose": true,
             "column": "Result"
           },
           {
@@ -419,7 +429,10 @@
             "field": "credits",
             "label": "Credits"
           }
-        ]
+        ],
+        "entryInto": {
+          "field": "abilities"
+        }
       },
       {
         "id": "level",
