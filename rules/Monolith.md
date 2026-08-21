@@ -1008,6 +1008,8 @@ Dedication to a power, deity, ancestry, or other belief system.
 
 Pursuing a personal goal, vendetta, or long-term project.
 
+### Vices Table
+
 | D10 | Vice | Triggers | Satisfying |
 | --- | --- | --- | --- |
 | 1 | Gambling | Major win or loss at a high stakes game or wager. | Gamble with at least 10% of your personal wealth, wager a unique/ useful/powerful item, put other major stakes up. |

@@ -197,6 +197,230 @@
       "scifi"
     ]
   },
+  "optionalRules": [
+    {
+      "id": "tags",
+      "label": "Tags",
+      "hint": "Put words of your own on the crew, the cast, and the library, and find them again by those words.",
+      "feature": "tags",
+      "default": false
+    }
+  ],
+  "characterCreation": {
+    "label": "Build a freelancer",
+    "rulesQuery": "CHARACTER CREATION",
+    "steps": [
+      {
+        "id": "scores",
+        "kind": "roll-scores",
+        "label": "Ability scores",
+        "rulesQuery": "ABILITY SCORES",
+        "hint": "3D6 for each, in order. You may swap any two of the results.",
+        "scores": [
+          {
+            "label": "STR",
+            "dice": "3d6",
+            "currentKey": "strCurrent",
+            "maximumKey": "strMax"
+          },
+          {
+            "label": "DEX",
+            "dice": "3d6",
+            "currentKey": "dexCurrent",
+            "maximumKey": "dexMax"
+          },
+          {
+            "label": "WIL",
+            "dice": "3d6",
+            "currentKey": "wilCurrent",
+            "maximumKey": "wilMax"
+          }
+        ],
+        "rearrange": {
+          "kind": "swap",
+          "count": 2
+        }
+      },
+      {
+        "id": "hit-protection",
+        "kind": "roll-scores",
+        "label": "Hit Protection",
+        "rulesQuery": "HIT PROTECTION (HP)",
+        "hint": "1D6. Rolled before your background, because your background's signature gear is read at this number.",
+        "scores": [
+          {
+            "label": "HP",
+            "dice": "1d6",
+            "currentKey": "hpCurrent",
+            "maximumKey": "hpMax"
+          }
+        ]
+      },
+      {
+        "id": "background",
+        "kind": "packet",
+        "label": "Background",
+        "rulesQuery": "BACKGROUNDS",
+        "hint": "Roll 1D12, or pick. Its first table is read at your HP; the other two are rolled.",
+        "under": "BACKGROUNDS",
+        "dice": "d12",
+        "prose": "PROFILE",
+        "grantFrom": "STARTING GEAR",
+        "reuse": [
+          {
+            "position": 1,
+            "fromStep": "hit-protection"
+          }
+        ],
+        "listKey": "equipment",
+        "into": {
+          "field": "background",
+          "joinInto": {
+            "field": "details",
+            "separator": "\n",
+            "prefixWith": "table"
+          }
+        }
+      },
+      {
+        "id": "finishing-touches",
+        "kind": "roll-table",
+        "label": "Finishing touches",
+        "rulesQuery": "FINISHING TOUCHES",
+        "optional": true,
+        "section": "FINISHING TOUCHES",
+        "tables": [
+          {
+            "table": "Physique",
+            "column": "Result"
+          },
+          {
+            "table": "Hair",
+            "column": "Result"
+          },
+          {
+            "table": "Face",
+            "column": "Result"
+          },
+          {
+            "table": "Mannerisms",
+            "column": "Result"
+          },
+          {
+            "table": "Clothing Style",
+            "column": "Result"
+          }
+        ],
+        "joinInto": {
+          "field": "details",
+          "separator": "\n",
+          "prefixWith": "table"
+        }
+      },
+      {
+        "id": "name",
+        "kind": "roll-table",
+        "label": "Name",
+        "section": "FINISHING TOUCHES",
+        "optional": true,
+        "hint": "Roll one, or write your own.",
+        "tables": [
+          {
+            "firstOf": [
+              "Male Names",
+              "Female Names",
+              "Ambiguous Names"
+            ],
+            "column": "Result"
+          },
+          {
+            "table": "Last Names",
+            "column": "Result"
+          }
+        ],
+        "joinInto": {
+          "field": "$name",
+          "separator": " "
+        }
+      },
+      {
+        "id": "vice",
+        "kind": "save",
+        "label": "Vices",
+        "rulesQuery": "GAINING A VICE",
+        "optional": true,
+        "hint": "With your scores in place, make a WIL save. On a failure you begin with a vice.",
+        "key": "wilCurrent",
+        "type": "WIL",
+        "on": "failure",
+        "then": [
+          {
+            "id": "vice-roll",
+            "kind": "roll-table",
+            "label": "Your vice",
+            "section": "VICES",
+            "tables": [
+              {
+                "table": "Vices Table",
+                "column": "Vice",
+                "field": "vices"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "starting-gear",
+        "kind": "grant",
+        "label": "Starting gear",
+        "rulesQuery": "STARTING GEAR",
+        "listKey": "equipment",
+        "items": [
+          "monolith/rations",
+          "monolith/data-comm",
+          "monolith/glo-torch"
+        ],
+        "roll": [
+          {
+            "dice": "3d6",
+            "field": "credits",
+            "label": "Credits"
+          }
+        ]
+      },
+      {
+        "id": "level",
+        "kind": "set",
+        "label": "Where you start",
+        "values": {
+          "level": 1,
+          "xp": 0,
+          "armorMax": 0
+        }
+      },
+      {
+        "id": "currents",
+        "kind": "derive",
+        "label": "Fill in your current scores",
+        "derive": [
+          {
+            "key": "armorCurrent",
+            "op": "copy",
+            "from": [
+              "armorMax"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "debt",
+        "kind": "rules",
+        "label": "Shared debt",
+        "rulesQuery": "GROUP DEBT",
+        "hint": "One D12 for the whole company, rolled once. Your GM rolls it on the group page."
+      }
+    ]
+  },
   "dice": {
     "save": {
       "sides": 20,
@@ -262,6 +486,11 @@
         "label": "Identity",
         "fields": [
           {
+            "key": "background",
+            "label": "Background",
+            "kind": "text"
+          },
+          {
             "key": "level",
             "label": "Level",
             "kind": "number"
@@ -276,6 +505,17 @@
             "label": "Corruption",
             "kind": "number",
             "placeholder": "1–30"
+          },
+          {
+            "key": "credits",
+            "label": "Credits",
+            "kind": "number",
+            "placeholder": "C"
+          },
+          {
+            "key": "details",
+            "label": "Details",
+            "kind": "textarea"
           }
         ]
       },

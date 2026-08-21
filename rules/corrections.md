@@ -49,6 +49,24 @@ No table gained, lost, or altered a row.
 
 The `4 HP | 5 HP | 6 HP` column headings of the GEAR PACKS chart are untouched: there HP is the axis of the chart rather than a die value.
 
+## Monolith — the vices table given a heading of its own
+
+**Source:** `raw/Monolith.md`, the D10 table at the end of VICES.
+
+**Original:** the table sat directly beneath `### AMBITION`, the last of the ten
+prose headings describing an individual vice.
+
+**Correction:** a `### Vices Table` heading now stands between the AMBITION prose
+and the table, matching the `Scars Table` heading in SCARS.
+
+**Reason:** the roller names a table after the heading that owns it, so the whole
+catalogue of vices was listed as "AMBITION" — the name of one of the ten rows in
+it. The table is the authority on every vice, not on the last one, and a step
+that names a table by name could not have found it. `viceCatalog` matches on the
+`Vice` column rather than the name and is unaffected either way.
+
+No table gained, lost, or altered a row.
+
 ## Monolith — Hollowing uses a d30
 
 **Source:** `raw/Monolith.md`, the HOLLOWING rules and thirty-row table under CORRUPTION.

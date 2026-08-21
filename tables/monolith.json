@@ -4636,8 +4636,8 @@
       }
     },
     {
-      "id": "vices-ambition",
-      "name": "AMBITION",
+      "id": "vices-vices-table",
+      "name": "Vices Table",
       "section": "VICES",
       "category": "VICES",
       "dice": "d10",
@@ -4752,17 +4752,17 @@
       "classification": "player",
       "origin": {
         "heading": {
-          "line": 1006,
+          "line": 1010,
           "level": 3,
-          "text": "AMBITION"
+          "text": "Vices Table"
         },
         "headingPath": [
           "VICES",
-          "AMBITION"
+          "Vices Table"
         ],
         "tagsLine": null,
-        "tableStart": 1010,
-        "tableEnd": 1021,
+        "tableStart": 1012,
+        "tableEnd": 1023,
         "dieColumn": "D10",
         "dice": "d10",
         "soleTable": true,
@@ -4875,7 +4875,7 @@
       "classification": "player",
       "origin": {
         "heading": {
-          "line": 1328,
+          "line": 1330,
           "level": 2,
           "text": "NPC WANTS"
         },
@@ -4884,8 +4884,8 @@
           "NPC WANTS"
         ],
         "tagsLine": null,
-        "tableStart": 1332,
-        "tableEnd": 1343,
+        "tableStart": 1334,
+        "tableEnd": 1345,
         "dieColumn": "D10",
         "dice": "d10",
         "soleTable": true,
@@ -5003,7 +5003,7 @@
       "classification": "player",
       "origin": {
         "heading": {
-          "line": 1505,
+          "line": 1507,
           "level": 3,
           "text": "Scars Table"
         },
@@ -5012,8 +5012,8 @@
           "Scars Table"
         ],
         "tagsLine": null,
-        "tableStart": 1507,
-        "tableEnd": 1520,
+        "tableStart": 1509,
+        "tableEnd": 1522,
         "dieColumn": "D12",
         "dice": "d12",
         "soleTable": true,
@@ -5059,7 +5059,7 @@
       "classification": "player",
       "origin": {
         "heading": {
-          "line": 1526,
+          "line": 1528,
           "level": 3,
           "text": "2D6 Carousing Results"
         },
@@ -5068,8 +5068,8 @@
           "2D6 Carousing Results"
         ],
         "tagsLine": null,
-        "tableStart": 1528,
-        "tableEnd": 1532,
+        "tableStart": 1530,
+        "tableEnd": 1534,
         "dieColumn": "2D6",
         "dice": "2d6",
         "soleTable": true,
@@ -5187,7 +5187,7 @@
       "classification": "player",
       "origin": {
         "heading": {
-          "line": 1534,
+          "line": 1536,
           "level": 3,
           "text": "Mishaps"
         },
@@ -5196,8 +5196,8 @@
           "Mishaps"
         ],
         "tagsLine": null,
-        "tableStart": 1536,
-        "tableEnd": 1549,
+        "tableStart": 1538,
+        "tableEnd": 1551,
         "dieColumn": "D12",
         "dice": "d12",
         "soleTable": true,
@@ -5315,7 +5315,7 @@
       "classification": "player",
       "origin": {
         "heading": {
-          "line": 1551,
+          "line": 1553,
           "level": 3,
           "text": "Fortunes"
         },
@@ -5324,8 +5324,8 @@
           "Fortunes"
         ],
         "tagsLine": null,
-        "tableStart": 1553,
-        "tableEnd": 1566,
+        "tableStart": 1555,
+        "tableEnd": 1568,
         "dieColumn": "D12",
         "dice": "d12",
         "soleTable": true,
@@ -5379,7 +5379,7 @@
       "classification": "player",
       "origin": {
         "heading": {
-          "line": 1754,
+          "line": 1756,
           "level": 3,
           "text": "Encounters (01/04)"
         },
@@ -5388,8 +5388,8 @@
           "Encounters (01/04)"
         ],
         "tagsLine": null,
-        "tableStart": 1756,
-        "tableEnd": 1761,
+        "tableStart": 1758,
+        "tableEnd": 1763,
         "dieColumn": "Roll",
         "dice": "d6",
         "soleTable": true,
@@ -5699,7 +5699,7 @@
       "classification": "player",
       "origin": {
         "heading": {
-          "line": 2107,
+          "line": 2109,
           "level": 3,
           "text": "D66 PSIONIC POWERS"
         },
@@ -5708,8 +5708,8 @@
           "D66 PSIONIC POWERS"
         ],
         "tagsLine": null,
-        "tableStart": 2109,
-        "tableEnd": 2146,
+        "tableStart": 2111,
+        "tableEnd": 2148,
         "dieColumn": "D66",
         "dice": "d66",
         "soleTable": true,
@@ -6019,7 +6019,7 @@
       "classification": "player",
       "origin": {
         "heading": {
-          "line": 2166,
+          "line": 2168,
           "level": 3,
           "text": "D66 ASTROMANCIES"
         },
@@ -6028,8 +6028,8 @@
           "D66 ASTROMANCIES"
         ],
         "tagsLine": null,
-        "tableStart": 2168,
-        "tableEnd": 2205,
+        "tableStart": 2170,
+        "tableEnd": 2207,
         "dieColumn": "D66",
         "dice": "d66",
         "soleTable": true,
@@ -6291,7 +6291,7 @@
       "classification": "player",
       "origin": {
         "heading": {
-          "line": 2231,
+          "line": 2233,
           "level": 3,
           "text": "ASPECT DISTORTION"
         },
@@ -6300,8 +6300,8 @@
           "ASPECT DISTORTION"
         ],
         "tagsLine": null,
-        "tableStart": 2241,
-        "tableEnd": 2272,
+        "tableStart": 2243,
+        "tableEnd": 2274,
         "dieColumn": "D30",
         "dice": "d30",
         "soleTable": false,
@@ -6419,7 +6419,7 @@
       "classification": "player",
       "origin": {
         "heading": {
-          "line": 2231,
+          "line": 2233,
           "level": 3,
           "text": "ASPECT DISTORTION"
         },
@@ -6428,8 +6428,8 @@
           "ASPECT DISTORTION"
         ],
         "tagsLine": null,
-        "tableStart": 2274,
-        "tableEnd": 2287,
+        "tableStart": 2276,
+        "tableEnd": 2289,
         "dieColumn": "D12",
         "dice": "d12",
         "soleTable": false,
@@ -6547,7 +6547,7 @@
       "classification": "player",
       "origin": {
         "heading": {
-          "line": 2231,
+          "line": 2233,
           "level": 3,
           "text": "ASPECT DISTORTION"
         },
@@ -6556,8 +6556,8 @@
           "ASPECT DISTORTION"
         ],
         "tagsLine": null,
-        "tableStart": 2289,
-        "tableEnd": 2302,
+        "tableStart": 2291,
+        "tableEnd": 2304,
         "dieColumn": "D12",
         "dice": "d12",
         "soleTable": false,
@@ -6675,7 +6675,7 @@
       "classification": "player",
       "origin": {
         "heading": {
-          "line": 2231,
+          "line": 2233,
           "level": 3,
           "text": "ASPECT DISTORTION"
         },
@@ -6684,8 +6684,8 @@
           "ASPECT DISTORTION"
         ],
         "tagsLine": null,
-        "tableStart": 2304,
-        "tableEnd": 2317,
+        "tableStart": 2306,
+        "tableEnd": 2319,
         "dieColumn": "D12",
         "dice": "d12",
         "soleTable": false,
@@ -6995,7 +6995,7 @@
       "classification": "player",
       "origin": {
         "heading": {
-          "line": 2329,
+          "line": 2331,
           "level": 3,
           "text": "D66 EX-TECH"
         },
@@ -7004,8 +7004,8 @@
           "D66 EX-TECH"
         ],
         "tagsLine": null,
-        "tableStart": 2333,
-        "tableEnd": 2370,
+        "tableStart": 2335,
+        "tableEnd": 2372,
         "dieColumn": "D66",
         "dice": "d66",
         "soleTable": true,
@@ -7315,7 +7315,7 @@
       "classification": "player",
       "origin": {
         "heading": {
-          "line": 2376,
+          "line": 2378,
           "level": 3,
           "text": "D66 Artifacts"
         },
@@ -7324,8 +7324,8 @@
           "D66 Artifacts"
         ],
         "tagsLine": null,
-        "tableStart": 2380,
-        "tableEnd": 2417,
+        "tableStart": 2382,
+        "tableEnd": 2419,
         "dieColumn": "D66",
         "dice": "d66",
         "soleTable": true,
@@ -7528,7 +7528,7 @@
       "classification": "player",
       "origin": {
         "heading": {
-          "line": 2474,
+          "line": 2476,
           "level": 3,
           "text": "ACQUIRING TALENTS"
         },
@@ -7537,8 +7537,8 @@
           "ACQUIRING TALENTS"
         ],
         "tagsLine": null,
-        "tableStart": 2482,
-        "tableEnd": 2503,
+        "tableStart": 2484,
+        "tableEnd": 2505,
         "dieColumn": "D20",
         "dice": "d20",
         "soleTable": true,
@@ -7616,7 +7616,7 @@
       "classification": "gm",
       "origin": {
         "heading": {
-          "line": 2611,
+          "line": 2613,
           "level": 3,
           "text": "PLANET ATTRIBUTES"
         },
@@ -7625,8 +7625,8 @@
           "PLANET ATTRIBUTES"
         ],
         "tagsLine": null,
-        "tableStart": 2615,
-        "tableEnd": 2623,
+        "tableStart": 2617,
+        "tableEnd": 2625,
         "dieColumn": "2D6",
         "dice": "2d6",
         "soleTable": false,
@@ -7696,7 +7696,7 @@
       "classification": "gm",
       "origin": {
         "heading": {
-          "line": 2611,
+          "line": 2613,
           "level": 3,
           "text": "PLANET ATTRIBUTES"
         },
@@ -7705,8 +7705,8 @@
           "PLANET ATTRIBUTES"
         ],
         "tagsLine": null,
-        "tableStart": 2625,
-        "tableEnd": 2632,
+        "tableStart": 2627,
+        "tableEnd": 2634,
         "dieColumn": "2D6",
         "dice": "2d6",
         "soleTable": false,
@@ -7792,7 +7792,7 @@
       "classification": "gm",
       "origin": {
         "heading": {
-          "line": 2611,
+          "line": 2613,
           "level": 3,
           "text": "PLANET ATTRIBUTES"
         },
@@ -7801,8 +7801,8 @@
           "PLANET ATTRIBUTES"
         ],
         "tagsLine": null,
-        "tableStart": 2634,
-        "tableEnd": 2643,
+        "tableStart": 2636,
+        "tableEnd": 2645,
         "dieColumn": "2D6",
         "dice": "2d6",
         "soleTable": false,
@@ -7880,7 +7880,7 @@
       "classification": "gm",
       "origin": {
         "heading": {
-          "line": 2611,
+          "line": 2613,
           "level": 3,
           "text": "PLANET ATTRIBUTES"
         },
@@ -7889,8 +7889,8 @@
           "PLANET ATTRIBUTES"
         ],
         "tagsLine": null,
-        "tableStart": 2645,
-        "tableEnd": 2654,
+        "tableStart": 2647,
+        "tableEnd": 2656,
         "dieColumn": "2D6",
         "dice": "2d6",
         "soleTable": false,
@@ -7960,7 +7960,7 @@
       "classification": "gm",
       "origin": {
         "heading": {
-          "line": 2611,
+          "line": 2613,
           "level": 3,
           "text": "PLANET ATTRIBUTES"
         },
@@ -7969,8 +7969,8 @@
           "PLANET ATTRIBUTES"
         ],
         "tagsLine": null,
-        "tableStart": 2656,
-        "tableEnd": 2663,
+        "tableStart": 2658,
+        "tableEnd": 2665,
         "dieColumn": "2D6",
         "dice": "2d6",
         "soleTable": false,
@@ -8048,7 +8048,7 @@
       "classification": "gm",
       "origin": {
         "heading": {
-          "line": 2611,
+          "line": 2613,
           "level": 3,
           "text": "PLANET ATTRIBUTES"
         },
@@ -8057,8 +8057,8 @@
           "PLANET ATTRIBUTES"
         ],
         "tagsLine": null,
-        "tableStart": 2665,
-        "tableEnd": 2673,
+        "tableStart": 2667,
+        "tableEnd": 2675,
         "dieColumn": "2D6",
         "dice": "2d6",
         "soleTable": false,
@@ -8136,7 +8136,7 @@
       "classification": "gm",
       "origin": {
         "heading": {
-          "line": 2675,
+          "line": 2677,
           "level": 3,
           "text": "INTERPRETING RESULTS"
         },
@@ -8145,8 +8145,8 @@
           "INTERPRETING RESULTS"
         ],
         "tagsLine": null,
-        "tableStart": 2679,
-        "tableEnd": 2687,
+        "tableStart": 2681,
+        "tableEnd": 2689,
         "dieColumn": "2D6",
         "dice": "2d6",
         "soleTable": true,
@@ -8296,7 +8296,7 @@
       "classification": "gm",
       "origin": {
         "heading": {
-          "line": 2867,
+          "line": 2869,
           "level": 4,
           "text": "D44 Quality"
         },
@@ -8306,8 +8306,8 @@
           "D44 Quality"
         ],
         "tagsLine": null,
-        "tableStart": 2869,
-        "tableEnd": 2886,
+        "tableStart": 2871,
+        "tableEnd": 2888,
         "dieColumn": "D44",
         "dice": "d44",
         "soleTable": true,
@@ -8457,7 +8457,7 @@
       "classification": "gm",
       "origin": {
         "heading": {
-          "line": 2888,
+          "line": 2890,
           "level": 4,
           "text": "D44 Physical Trait"
         },
@@ -8467,8 +8467,8 @@
           "D44 Physical Trait"
         ],
         "tagsLine": null,
-        "tableStart": 2890,
-        "tableEnd": 2907,
+        "tableStart": 2892,
+        "tableEnd": 2909,
         "dieColumn": "D44",
         "dice": "d44",
         "soleTable": true,
@@ -8618,7 +8618,7 @@
       "classification": "gm",
       "origin": {
         "heading": {
-          "line": 2909,
+          "line": 2911,
           "level": 4,
           "text": "D44 Physiology"
         },
@@ -8628,8 +8628,8 @@
           "D44 Physiology"
         ],
         "tagsLine": null,
-        "tableStart": 2911,
-        "tableEnd": 2928,
+        "tableStart": 2913,
+        "tableEnd": 2930,
         "dieColumn": "D44",
         "dice": "d44",
         "soleTable": true,
@@ -8779,7 +8779,7 @@
       "classification": "gm",
       "origin": {
         "heading": {
-          "line": 2965,
+          "line": 2967,
           "level": 3,
           "text": "D44 Mutations"
         },
@@ -8788,8 +8788,8 @@
           "D44 Mutations"
         ],
         "tagsLine": null,
-        "tableStart": 2967,
-        "tableEnd": 2984,
+        "tableStart": 2969,
+        "tableEnd": 2986,
         "dieColumn": "D44",
         "dice": "d44",
         "soleTable": true,
@@ -8884,7 +8884,7 @@
       "classification": "gm",
       "origin": {
         "heading": {
-          "line": 2986,
+          "line": 2988,
           "level": 3,
           "text": "D8 Drugs"
         },
@@ -8893,8 +8893,8 @@
           "D8 Drugs"
         ],
         "tagsLine": null,
-        "tableStart": 2990,
-        "tableEnd": 2999,
+        "tableStart": 2992,
+        "tableEnd": 3001,
         "dieColumn": "D8",
         "dice": "d8",
         "soleTable": true,

@@ -59,6 +59,22 @@ and never a build step: a stale `tables/` file installs perfectly well and is
 simply out of step with the book. `systems:validate` will tell you the JSON
 parses; only `--check` tells you it still matches the Markdown beside it.
 
+## Optional rules
+
+`optionalRules` is what this system offers a table rather than imposes on it.
+Each entry names the `feature` the application switches on — the ids the
+application knows are its own, not this repository's to invent — and `default`
+is where a new room starts. Monolith declares one, `tags`, defaulting off.
+
+Two things follow from a room recording only where it has *moved* a rule.
+Changing a `default` here changes it for every room that never said otherwise,
+and for none of the rooms that did. And an `id` is what those rooms' settings are
+recorded against, so it is as permanent as the system's own: rename one and every
+room that had switched it goes back to the default.
+
+Mark a rule `required` for something Monolith is played by rather than offered —
+no room is then given a switch, and the rule is on everywhere.
+
 ## Changing the sheet
 
 Adding a field to `characterSheet` is safe. **Removing one is not** — a

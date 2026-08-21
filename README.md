@@ -33,13 +33,31 @@ it into the running instance. No restart, and no rebuild of the application.
 | `rules/corrections.md` | Every repair made to the source, and why |
 | `tables/monolith.json` | The tables extracted from the rules, ready to roll on |
 | `notes.md` | Working notes on how this system was fitted to the application |
+| `character-creation-plan.md` | The draft declaration for the guided character builder, and the repository work it needs first |
 
 `source/` holds the original book and is not published here — see
 [NOTICE.md](NOTICE.md).
 
+## Optional rules
+
+Monolith offers **tags** and starts with them off. A table that switches them on
+in the room's settings can put words of its own on the crew, the cast, the
+freelancers, and everything in the Library, and find any of it again by those
+words. It is a facility the application provides rather than anything the book
+asks for, which is exactly why it is offered rather than imposed.
+
 ## Working on it
 
 See [AGENTS.md](AGENTS.md).
+
+When adapting an adventure into a Monolith campaign, use the exact campaign
+vocabulary and fiction-first conversion guidance in [notes.md](notes.md). From a
+campaign importer checkout beside this repository, validate the result against
+the live system definition rather than copied field names:
+
+```sh
+node tools/check.mjs campaigns/<name> --system ../devils-toys-monolith
+```
 
 ## Licence and attribution
 
