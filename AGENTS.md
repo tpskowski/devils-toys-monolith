@@ -45,6 +45,17 @@ cross-references, and the table parse — so anything it accepts will install.
 The same command runs in CI on every push. A red build means the system will not
 install, not that a style rule was broken.
 
+It runs against whatever the core repository has on `main`, which is what makes
+a declaration using something the application has not shipped yet a red build
+rather than a wrong one. So **open such a pull request as a draft**, and mark it
+ready once the core change it depends on is merged. The order is the core change
+first, then this one: a system declaring a field the installed application does
+not know is refused at the door, and CI is that door.
+
+That is only for a change that needs a new build. A rules repair, a rebuilt
+`tables/` file, or anything else the shipped application already understands has
+nothing to wait for and goes up ready for review.
+
 ## Changing the rules text
 
 `rules/Monolith.md` is the text the application serves. It is the book,
