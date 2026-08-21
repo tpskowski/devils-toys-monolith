@@ -20,6 +20,9 @@ CHARACTER CREATION, in the book's own order:
 6. **Vices.** With the scores in place, make a WIL save; on a failure roll D10 and start with that vice.
 7. **Starting gear.** Three days of rations, a cheap data-comm, a glo-torch, and 3D6 credits.
 
+Shared debt stays out of the character builder: it is one company-level roll and
+belongs on the group page rather than on every freelancer's sheet.
+
 And GEAR PACKS as a variant: skip the background, cross your highest ability
 score against your HP, and take the package that falls out.
 
@@ -94,7 +97,7 @@ column would parse as text and the table would stop being rollable at all.
 
 ## The draft declaration
 
-Ten steps. Written against the application vocabulary as planned; field names
+Thirteen steps. Written against the application vocabulary as planned; field names
 here move if that plan's do, which is why nothing should be committed to
 `system.json` before the schema is published.
 
@@ -130,15 +133,38 @@ here move if that plan's do, which is why nothing should be committed to
         "kind": "packet",
         "label": "Background",
         "rulesQuery": "BACKGROUNDS",
-        "hint": "Roll 1D12, or pick. Its first table is read at your HP; the other two are rolled.",
+        "hint": "Roll 1D12, or pick. You will go through its three dossier tables one at a time next.",
         "under": "BACKGROUNDS",
         "dice": "d12",
         "prose": "PROFILE",
         "grantFrom": "STARTING GEAR",
+        "rollTablesUnder": false,
         "listKey": "equipment",
-        "reuse": [{ "position": 1, "fromStep": "hit-protection" }],
-        "into": { "field": "background", "joinInto": { "field": "details", "separator": "
-", "prefixWith": "table" } }
+        "into": { "field": "background" }
+      },
+      {
+        "id": "background-table-one",
+        "kind": "roll-table",
+        "label": "Background dossier 1 of 3",
+        "section": "BACKGROUNDS",
+        "tables": [{ "fromPacket": "background", "position": 1, "fromStep": "hit-protection", "stowInto": "equipment" }],
+        "joinInto": { "field": "details", "separator": "\n", "prefixWith": "table" }
+      },
+      {
+        "id": "background-table-two",
+        "kind": "roll-table",
+        "label": "Background dossier 2 of 3",
+        "section": "BACKGROUNDS",
+        "tables": [{ "fromPacket": "background", "position": 2, "stowInto": "equipment" }],
+        "joinInto": { "field": "details", "separator": "\n", "prefixWith": "table" }
+      },
+      {
+        "id": "background-table-three",
+        "kind": "roll-table",
+        "label": "Background dossier 3 of 3",
+        "section": "BACKGROUNDS",
+        "tables": [{ "fromPacket": "background", "position": 3, "stowInto": "equipment" }],
+        "joinInto": { "field": "details", "separator": "\n", "prefixWith": "table" }
       },
       {
         "id": "finishing-touches",
@@ -154,7 +180,8 @@ here move if that plan's do, which is why nothing should be committed to
           { "table": "Mannerisms", "column": "Result" },
           { "table": "Clothing Style", "column": "Result" }
         ],
-        "joinInto": { "field": "details", "separator": "\n", "prefixWith": "table" }
+        "joinInto": { "field": "details", "separator": "\n", "prefixWith": "table" },
+        "editable": { "multiline": true, "placeholder": "Describe your own finishing touches" }
       },
       {
         "id": "name",
@@ -166,7 +193,8 @@ here move if that plan's do, which is why nothing should be committed to
           { "firstOf": ["Male Names", "Female Names", "Ambiguous Names"], "column": "Result" },
           { "table": "Last Names", "column": "Result" }
         ],
-        "joinInto": { "field": "$name", "separator": " " }
+        "joinInto": { "field": "$name", "separator": " " },
+        "editable": { "placeholder": "Enter a custom name" }
       },
       {
         "id": "vice",
@@ -195,23 +223,19 @@ here move if that plan's do, which is why nothing should be committed to
         "rulesQuery": "STARTING GEAR",
         "listKey": "equipment",
         "items": ["monolith/rations", "monolith/data-comm", "monolith/glo-torch"],
+        "reviewFrom": ["background", "background-table-one", "background-table-two", "background-table-three"],
         "roll": [{ "dice": "3d6", "field": "credits", "label": "Credits" }]
       },
-      { "id": "level", "kind": "set", "label": "Level", "values": { "level": 1, "xp": 0, "armorMax": 0 } },
+      { "id": "level", "kind": "set", "label": "Starting defaults", "automatic": true, "defaults": true, "values": { "level": 1, "xp": 0 } },
       {
         "id": "currents",
         "kind": "derive",
-        "label": "Fill in your current scores",
+        "label": "Armor from equipment",
+        "automatic": true,
         "derive": [
-          { "key": "armorCurrent", "op": "copy", "from": ["armorMax"] }
+          { "key": "armorCurrent", "op": "equipment-armor", "from": ["equipment"] },
+          { "key": "armorMax", "op": "equipment-armor", "from": ["equipment"] }
         ]
-      },
-      {
-        "id": "debt",
-        "kind": "rules",
-        "label": "Shared debt",
-        "rulesQuery": "GROUP DEBT",
-        "hint": "One D12 for the whole company, rolled once. Your GM rolls it on the group page."
       }
     ]
   }
@@ -222,12 +246,12 @@ here move if that plan's do, which is why nothing should be committed to
 
 - **`$name` is the character's name column**, not a sheet field. The application declares it as `CREATION_NAME_KEY` and permits it as a write target nowhere else; a sheet that declared a field of that name would be refused at install.
 - **`type` is `WIL`, not `wil`.** A save step names one of the system's own `dice.save.types` ids, and Monolith writes its three in capitals.
-- **`rollTablesUnder` defaults to true and is left out.** A packet is its tables; saying so would be noise. `reuse` is a field of its own beside it, naming the tables that are read rather than rolled.
-- **`position: 1` is the book's own ordering, not a guess.** All twelve backgrounds put their HP-indexed table first, under `#### STARTING GEAR`, ahead of the two that are rolled. Naming it by position is the only handle there is — the twelve tables share no name, no column, and no tag that the other twenty-four do not also carry.
-- **`hp`, `str`, `dex`, and `wil` currents are set by their own `roll-scores` step**, which writes both keys of a pair. Only `armorCurrent` needs `derive`, because armour is the one pair no creation step rolls.
+- **The background packet only chooses the background.** `rollTablesUnder: false` leaves its three tables for the three following `roll-table` screens. Each screen resolves its table from the packet's chosen section with `fromPacket` and a one-based `position`; the first also names `fromStep: "hit-protection"`, because it reads rather than rerolls HP.
+- **The positions are the book's own ordering, not a guess.** All twelve backgrounds put their HP-indexed table first, under `#### STARTING GEAR`, ahead of the two that are rolled. Naming the three tables by position is the only common handle there is — their names differ for every background.
+- **`hp`, `str`, `dex`, and `wil` currents are set by their own `roll-scores` step**, which writes both keys of a pair. Armor is derived automatically at Finish from the equipment the player actually stowed: the best base armor plus explicit `+1 Armor` sources, capped at 3.
 - **`listKey` is not optional here in practice.** This sheet has two lists, `equipment` and `augmentations`, so an unmatched gear line has no obvious home. Naming `equipment` is what the book means — a background's bullets are things you carry, and nothing in BACKGROUNDS grants an augmentation.
-- **The background's gear is a checklist, not an application.** The bullets under a background's `#### STARTING GEAR` are prose — "Combat Knife (D6) or 2 Flash Grenades" is a choice, and "Cigar" is not in the catalogue at all. The application matches what it can against `items.json` and offers the rest as the text a slot holds anyway. Nothing here should try to make those bullets machine-readable; that would be restating the book in `system.json`, which is the thing the whole repository is arranged to avoid.
-- **The Mercenary's Old Crew Specialty rows grant gear too** — "Take holo-binocs and a claymore" — and so do half the background tables in the book. Same treatment: rolled, written into `details`, offered as text. A player stows what they want.
+- **The background's gear is reviewed at Starting Gear, not applied on the Background screen.** The bullets under a background's `#### STARTING GEAR` are prose — "Combat Knife (D6) or 2 Flash Grenades" is a choice, and "Cigar" is not in the catalogue at all. The application matches what it can against `items.json` and offers the rest as the text a slot holds anyway. Nothing here should try to make those bullets machine-readable; that would be restating the book in `system.json`, which is the thing the whole repository is arranged to avoid.
+- **The Mercenary's Old Crew Specialty rows grant gear too** — "Take holo-binocs and a claymore" — and so do half the background tables in the book. Each dossier screen uses `stowInto: "equipment"`, so its result joins the same later Starting Gear review. A player stows what they want.
 - **Gear packs are not in the draft.** The variant needs a two-axis lookup — highest ability score against HP, split across two tables because it did not fit the page — and the roller has no notion of such a table. It stays a `rules` step pointing at GEAR PACKS until that exists, if it ever does. Note that its HP axis is the same 1d6 the background's first table reads, so a step that can reuse a roll is half of what it would need.
 - **Talents, psionics, astromancy, artifacts, and ex-tech** are referenced by background results by number ("Psionic #22", "Talent #18") and each has a table of its own. Rolling them from a background result is a link between tables, which the roller already has — worth trying once the builder works, and out of the first pass.
 

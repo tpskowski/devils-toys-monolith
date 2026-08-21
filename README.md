@@ -25,7 +25,7 @@ it into the running instance. No restart, and no rebuild of the application.
 
 | File | What it is |
 | --- | --- |
-| `devilsystem.json` | The marker that says this repository is a game system, and which one |
+| `devilsystem.json` | The marker that says this repository is a game system, which one, and which release of it |
 | `system.json` | The system definition: sheet layout, dice, content modules, warnings, NPC statblocks, group views |
 | `items.json` | The gear catalogue |
 | `traits.json` | What the book's weapon and gear words mean |
@@ -49,6 +49,18 @@ asks for, which is exactly why it is offered rather than imposed.
 ## Working on it
 
 See [AGENTS.md](AGENTS.md).
+
+With the core `the-devils-toys` checkout beside this repository and its npm
+dependencies installed, make a local installer bundle with:
+
+```sh
+npm run bundle
+```
+
+This validates the repository with the same checks as an install and writes
+`dist/monolith.devilsystem.zip`, ready for **Management → Systems → From a
+file**. The generated `dist/` directory is local build output and is not
+committed.
 
 When adapting an adventure into a Monolith campaign, use the exact campaign
 vocabulary and fiction-first conversion guidance in [notes.md](notes.md). From a

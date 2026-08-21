@@ -2,6 +2,9 @@
 # is not ours to publish. Everything an author keeps for reference goes here.
 /source/
 
+# Locally built installer files.
+/dist/
+
 # Editor and merge leftovers
 .DS_Store
 Thumbs.db

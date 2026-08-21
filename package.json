@@ -1,0 +1,7 @@
+{
+  "name": "devils-toys-monolith",
+  "private": true,
+  "scripts": {
+    "bundle": "node ../the-devils-toys/node_modules/tsx/dist/cli.mjs ../the-devils-toys/server/src/bundle-system.ts ../devils-toys-monolith --out ../devils-toys-monolith/dist/monolith.devilsystem.zip"
+  }
+}
