@@ -71,6 +71,10 @@ the live system definition rather than copied field names:
 node tools/check.mjs campaigns/<name> --system ../devils-toys-monolith
 ```
 
+## Work items
+
+See [work-items.md](work-items.md) for outstanding Monolith-specific work and dependencies on the tabletop.
+
 ## Licence and attribution
 
 Monolith is by Adam Hensley and its text is licensed under
